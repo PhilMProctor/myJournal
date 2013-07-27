@@ -7,12 +7,12 @@ TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'views')
 jinja_environment = \
     jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
   
-class Basehandler(webapp2.RequestHandler):
+class BaseHandler(webapp2.RequestHandler):
   @webapp2.cached_property
-    def jinja2(self):
+  def jinja2(self):
         return jinja2.get_jinja2(app=self.app)
 
-    def render_template(
+  def render_template(
         self,
         filename,
         template_values,
@@ -23,7 +23,7 @@ class Basehandler(webapp2.RequestHandler):
         
 class MainPage(BaseHandler):
 
-    def get(self):
+  def get(self):
         self.render_template('index.html', {})
 
 
