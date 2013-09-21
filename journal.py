@@ -24,7 +24,7 @@ class BaseHandler(webapp2.RequestHandler):
 class MainPage(BaseHandler):
 
   def get(self):
-        self.render_template('index.html', {})
+        self.render_template('home.html', {})
 
 
 
