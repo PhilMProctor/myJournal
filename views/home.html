@@ -29,12 +29,24 @@
                     <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="/ico/favicon.png">
                                    -->
+                                   
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
 
   </head>
 
   <body>
-    <div class="container">
-        <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <p>Date: <input type="text" id="datepicker" /></p>
+        </div>
+        <div class="span10">
+          <div class="tabbable"> <!-- Only required for left/right tabs -->
             <ul class="nav nav-tabs">
             <li class="active"><a href="#tab1" data-toggle="tab">Journal</a></li>
             <li><a href="#tab2" data-toggle="tab">Feelings</a></li>
@@ -52,6 +64,7 @@
                 </div>
             </div>
         </div>
+      </div>
     </div> <!-- End of container -->
 {% block content %}
   
@@ -66,8 +79,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/js/bootstrap.js"></script>
-    <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!--<script src="/js/jquery.js"></script>-->
+    
 
   </body>
 </html>
