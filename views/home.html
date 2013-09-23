@@ -1,0 +1,61 @@
+{% extends main.html %}
+
+{% block content %}
+<div class="container">
+  <div class="span9">
+
+  <p>Journal Items</p>
+  
+    <table class="table table-striped">
+            <thead>
+                    <tr>
+                      <th>Snippet</th>
+                      <th>Date</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+            </thead>
+                  <tbody>
+                {% for entry in entries %}
+                    <tr>
+                      <td>{{entry.jText}}</td>
+                      <td>{{entry.date}}</td>
+                      <td><a href="#" class="btn btn-info">View</a></td>
+                      <td><a href="aue/{{entry.key.id()}}" class="btn btn-info">Edit</a></td>
+                    </tr>
+                {% endfor %}
+                  </tbody>
+    </table>
+    
+    <p>Free Writing</p>
+  
+    <table class="table table-striped">
+            <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Date</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+            </thead>
+                  <tbody>
+                {% for page in pages %}
+                    <tr>
+                      <td>{{page.fText}}</td>
+                      <td>{{page.date}}</td>
+                      <td><a href="/auv/{{page.key.id()}}" class="btn btn-info">View</a></td>
+                      <td><a href="aue/{{page.key.id()}}" class="btn btn-info">Edit</a></td>
+                    </tr>
+                {% endfor %}
+                  </tbody>
+    </table>
+
+  
+
+  </div>
+
+</div>
+
+{% endblock content %}

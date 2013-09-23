@@ -1,7 +1,24 @@
-import webapp2
+
+from google.appengine.ext import ndb
+
 import jinja2
+import logging
+import os.path
+import webapp2
 import time
-import os
+import datetime
+import sys
+import urllib
+
+from webapp2_extras import auth
+from webapp2_extras import sessions
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
+
+from webapp2_extras.auth import InvalidAuthIdError
+from webapp2_extras.auth import InvalidPasswordError
+
+from models import journal, free
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'views')
 jinja_environment = \
@@ -24,7 +41,13 @@ class BaseHandler(webapp2.RequestHandler):
 class MainPage(BaseHandler):
 
   def get(self):
-        self.render_template('main.html', {})
+        entries = journal.query()
+        pages = free.query()
+        params = {
+                  'entries': entries
+                  'pages': pages}
+        
+        self.render_template('home.html', params)
 
 
 
