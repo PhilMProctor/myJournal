@@ -44,7 +44,7 @@ class MainPage(BaseHandler):
         entries = journal.query()
         pages = free.query()
         params = {
-                  'entries': entries
+                  'entries': entries,
                   'pages': pages}
         
         self.render_template('home.html', params)
