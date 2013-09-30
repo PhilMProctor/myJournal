@@ -8,15 +8,9 @@ import webapp2
 
 class journal(ndb.Model):
     #My Journal
-    jText = ndb.StringProperty()
+    jTitle = ndb.StringProperty()
+    jContent = ndb.StringProperty()
     author = ndb.StringProperty()
     jRate = ndb.StringProperty()
-    date = ndb.DateTimeProperty(auto_now_add=True)
-    
-class free(ndb.Model):
-    #My Free Writing
-    fTitle =ndb.StringProperty()
-    fText = ndb.StringProperty()
-    author = ndb.StringProperty()
-    fRate = ndb.StringProperty()
+    jPicture = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)

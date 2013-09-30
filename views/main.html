@@ -43,7 +43,14 @@
   <body>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span9">
+          {{nickname}}
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
           <p>Date: <input type="text" id="datepicker" /></p>
           <p><div class="btn" class="btn-info">Journal</div></p>
            <p><div class="btn" class="btn-info">Images</div></p>
@@ -59,10 +66,12 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab1">
-                    <p>Overview</p>
+                    {% block overview %}
+                    {% endblock overview %}
                 </div>
                 <div class="tab-pane" id="tab2">
-                    <p>My Journal</p>
+                    {% block journal %}
+                    {% endblock journal %}
                 </div>
                 <div class="tab-pane" id="tab3">
                     <p>My Feelings</p>

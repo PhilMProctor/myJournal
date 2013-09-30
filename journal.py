@@ -1,5 +1,6 @@
 
 from google.appengine.ext import ndb
+from google.appengine.api import users
 
 import jinja2
 import logging
@@ -18,7 +19,7 @@ from google.appengine.ext.webapp import blobstore_handlers
 from webapp2_extras.auth import InvalidAuthIdError
 from webapp2_extras.auth import InvalidPasswordError
 
-from models import journal, free
+from models import journal
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'views')
 jinja_environment = \
@@ -41,13 +42,23 @@ class BaseHandler(webapp2.RequestHandler):
 class MainPage(BaseHandler):
 
   def get(self):
-        entries = journal.query()
-        pages = free.query()
-        params = {
+        user = users.get_current_user()
+
+        if user:
+          entries = journal.query()
+          daystamp=datetime.datetime.strftime((datetime.datetime.now()),'%Y-%m-%d')
+          datestamp=datetime.datetime.strftime((datetime.datetime.now()),'%Y-%m-%d %H:%M')
+          params = {
                   'entries': entries,
-                  'pages': pages}
+                  'nickname': user.nickname(),
+                  'daystamp': daystamp,
+                  'datestamp': datestamp}
         
-        self.render_template('home.html', params)
+          self.render_template('home.html', params)
+        else:
+          self.redirect(users.create_login_url(self.request.uri))
+            
+        
 
 
 
