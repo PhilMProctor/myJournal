@@ -73,13 +73,13 @@ class JournalPage(BaseHandler):
     author = u['name']
     Entry = journal(jTitle = self.request.get('jTitle'),
             jContent = self.request.get('jContent'),
-            author =str(author)
+            author =str(author))
     Entry.put()
 
 
 
 app = webapp2.WSGIApplication([
   webapp2.Route('/', MainPage, name='home'),
-  webapp2.Route('/journal.html', JournalPage, name='journal')
+  webapp2.Route('/journal', JournalPage, name='journal')
         ],
         debug=True)
