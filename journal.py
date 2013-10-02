@@ -63,6 +63,6 @@ class MainPage(BaseHandler):
 
 
 app = webapp2.WSGIApplication([
-        ('/', MainPage)
+  webapp2.Route('/', MainPage, name='home')
         ],
         debug=True)
