@@ -58,11 +58,28 @@ class MainPage(BaseHandler):
         else:
           self.redirect(users.create_login_url(self.request.uri))
             
-        
+class JournalPage(BaseHandler):
+  
+  def get(self):
+    user = users.get_current_user()
+    
+  if user:
+    self.render_template('journal.html', user.nickname)
+  else:
+    self.redirect(users.create_login_url(self.request.uri))
+    
+  def post(self):
+    u = self.user_info
+    author = u['name']
+    Entry = journal(jTitle = self.request.get('jTitle'),
+            jContent = self.request.get('jContent'),
+            author =str(author)
+    Entry.put()
 
 
 
 app = webapp2.WSGIApplication([
-  webapp2.Route('/', MainPage, name='home')
+  webapp2.Route('/', MainPage, name='home'),
+  webapp2.Route('/journal.html', JournalPage, name='journal')
         ],
         debug=True)
