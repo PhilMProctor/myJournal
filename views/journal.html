@@ -1,10 +1,13 @@
 {% extends "main.html" %}
 
+
+{% block journal %}
 <div class="container-fluid">
     <div class="span6">
         <form action="" method="post">
             <fieldset>
                 <input type="text" name="jTitle" id="jTitle">
+                    <br>
                 <textarea name="jContent" id="jContent"></textarea>
             </fieldset>
             <button type="submit" class="btn btn-success">Save</button>
@@ -13,3 +16,5 @@
     </div>
 
 </div>
+
+{% endblock journal %}

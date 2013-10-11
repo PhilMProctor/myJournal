@@ -1,6 +1,7 @@
-
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from webapp2_extras import auth
+from webapp2_extras import sessions
 
 import jinja2
 import logging
@@ -62,19 +63,19 @@ class JournalPage(BaseHandler):
   
   def get(self):
     user = users.get_current_user()
-    
-  if user:
-    self.render_template('journal.html', user.nickname)
-  else:
-    self.redirect(users.create_login_url(self.request.uri))
+    params = {'username': user.nickname()}
+    if user:
+      self.render_template('journal.html', params)
+    else:
+      self.redirect(users.create_login_url(self.request.uri))
     
   def post(self):
-    u = self.user_info
-    author = u['name']
+    author = users.get_current_user()
     Entry = journal(jTitle = self.request.get('jTitle'),
             jContent = self.request.get('jContent'),
             author =str(author))
     Entry.put()
+    self.redirect('/')
 
 
 
