@@ -31,26 +31,20 @@
 <div class="container-fluid">
   <div class="span6">
     {{datestamp}}
-    <table class="table table-striped">
-            <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Date</th>
-                    </tr>
-            </thead>
-                  <tbody>
-                {% for entry in entries %}
-                    <tr>
-                      <td>{{entry.jTitle}}</td>
-                      <td>{{entry.date}}</td>
-                      <td><a href="#" class="btn btn-info">View</a></td>
-                    </tr>
-                {% endfor %}
-                  </tbody>
-    </table>
-
-  
-
+	<div class="accordion" id="accordion2">
+	{% for entry in entries %}
+		<div class="accordion-group">
+    			<div class="accordion-heading">
+      				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{entry.key.id()}}">{{entry.jTitle}}</a>
+    			</div>
+    			<div id="{{entry.key.id()}}" class="accordion-body collapse">
+				{{entry.jContent}}
+      				<div class="accordion-inner">
+      				</div>
+   			 </div>
+  		</div>
+	</div>
+	{% endfor %}
   </div>
 
 </div>
